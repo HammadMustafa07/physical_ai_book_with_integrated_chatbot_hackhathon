@@ -1,0 +1,115 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #001f3f; /* Navy blue */
+  --ifm-color-primary-dark: #001933; /* Darker navy */
+  --ifm-color-primary-darker: #001426; /* Even darker navy */
+  --ifm-color-primary-darkest: #000f1a; /* Darkest navy */
+  --ifm-color-primary-light: #002a52; /* Lighter navy */
+  --ifm-color-primary-lighter: #003566; /* Even lighter navy */
+  --ifm-color-primary-lightest: #00407a; /* Lightest navy */
+  --ifm-color-secondary: #FFDC00; /* Gold (complementary) */
+  --ifm-color-secondary-dark: #e6c700; /* Darker gold */
+  --ifm-color-secondary-darker: #ccaf00; /* Even darker gold */
+  --ifm-color-secondary-darkest: #b39800; /* Darkest gold */
+  --ifm-color-secondary-light: #ffe11a; /* Lighter gold */
+  --ifm-color-secondary-lighter: #ffe633; /* Even lighter gold */
+  --ifm-color-secondary-lightest: #ffeb4d; /* Lightest gold */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Add smooth transitions for theme switching and hover effects */
+  --ifm-transition-speed: 0.3s;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #4d97ff; /* Improved contrast navy blue for dark mode */
+  --ifm-color-primary-dark: #3a86ff; /* Better contrast darker navy */
+  --ifm-color-primary-darker: #2a75e0; /* Better contrast even darker navy */
+  --ifm-color-primary-darkest: #1a5fb4; /* Better contrast darkest navy */
+  --ifm-color-primary-light: #6eb5ff; /* Better contrast lighter navy */
+  --ifm-color-primary-lighter: #8dc4ff; /* Better contrast even lighter navy */
+  --ifm-color-primary-lightest: #add2ff; /* Better contrast lightest navy */
+  --ifm-color-secondary: #FFDC00; /* Gold (complementary) */
+  --ifm-color-secondary-dark: #e6c700; /* Darker gold */
+  --ifm-color-secondary-darker: #ccaf00; /* Even darker gold */
+  --ifm-color-secondary-darkest: #b39800; /* Darkest gold */
+  --ifm-color-secondary-light: #ffe11a; /* Lighter gold */
+  --ifm-color-secondary-lighter: #ffe633; /* Even lighter gold */
+  --ifm-color-secondary-lightest: #ffeb4d; /* Lightest gold */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Enhanced text contrast for dark mode */
+  --ifm-color-content: #e6e6e6; /* Lighter content text */
+  --ifm-color-content-secondary: #cccccc; /* Lighter secondary text */
+  --ifm-background-color: #1a1a1a; /* Darker background for better contrast */
+  --ifm-background-surface-color: #222222; /* Surface background */
+}
+
+/* Add smooth transitions for theme switching */
+html {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Add hover effects for links */
+a {
+  transition: color var(--ifm-transition-speed) ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Add hover effects for navigation items */
+.menu__list-item a:hover,
+.navbar__item:hover,
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  transition: all var(--ifm-transition-speed) ease;
+}
+
+/* Add hover effects for sidebar items */
+.sidebar-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: background-color var(--ifm-transition-speed) ease;
+}
+
+[data-theme='dark'] .sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Add hover effects for homepage features */
+.featureSvg {
+  transition: transform var(--ifm-transition-speed) ease;
+}
+
+.featureSvg:hover {
+  transform: scale(1.05);
+}
+
+/* Add focus states for accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Improve button hover states */
+.button {
+  transition: all var(--ifm-transition-speed) ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

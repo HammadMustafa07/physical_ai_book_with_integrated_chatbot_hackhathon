@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+  title: Vision-Language-Action (VLA) API
+  description: API for VLA pipeline simulation and testing in educational robotics
+  version: 1.0.0
+servers:
+  - url: https://vla-simulation.example.com/api/v1
+    description: VLA Simulation API Server
+
+paths:
+  /voice-commands:
+    post:
+      summary: Process a voice command
+      description: Send a voice command to be processed by the VLA pipeline
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceCommandRequest'
+      responses:
+        '200':
+          description: Voice command processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceCommandResponse'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+  /action-plans:
+    get:
+      summary: Get all action plans
+      description: Retrieve a list of action plans
+      responses:
+        '200':
+          description: List of action plans
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  plans:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ActionPlan'
+        '500':
+          description: Internal server error
+    post:
+      summary: Create a new action plan
+      description: Create a new action plan from natural language
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionPlanRequest'
+      responses:
+        '201':
+          description: Action plan created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlan'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+  /action-plans/{id}:
+    get:
+      summary: Get an action plan by ID
+      description: Retrieve a specific action plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Action plan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlan'
+        '404':
+          description: Action plan not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    VoiceCommandRequest:
+      type: object
+      required:
+        - text
+        - userId
+      properties:
+        text:
+          type: string
+          description: The transcribed voice command text
+          example: "Move forward 2 meters"
+        userId:
+          type: string
+          description: ID of the user issuing the command
+          example: "user-123"
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence level of speech recognition
+          example: 0.85
+
+    VoiceCommandResponse:
+      type: object
+      properties:
+        commandId:
+          type: string
+          description: Unique identifier for the processed command
+          example: "cmd-456"
+        intent:
+          type: string
+          description: Structured robot intent derived from command
+          example: "MOVE_FORWARD"
+        actionPlanId:
+          type: string
+          description: ID of the generated action plan (if applicable)
+          example: "plan-789"
+        status:
+          type: string
+          enum: [processed, queued, failed]
+          description: Processing status
+          example: "processed"
+
+    ActionPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the action plan
+          example: "plan-789"
+        title:
+          type: string
+          description: Human-readable title for the plan
+          example: "Navigate to kitchen and pick up object"
+        description:
+          type: string
+          description: Detailed description of the plan
+          example: "Robot should navigate to kitchen, identify red cup, and pick it up"
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/RobotAction'
+        status:
+          type: string
+          enum: [pending, in-progress, completed, failed]
+          description: Current status of the plan
+          example: "pending"
+        createdAt:
+          type: string
+          format: date-time
+          description: When the plan was created
+          example: "2025-12-21T10:00:00Z"
+        estimatedDuration:
+          type: integer
+          description: Estimated duration in seconds
+          example: 120
+
+    ActionPlanRequest:
+      type: object
+      required:
+        - goal
+        - userId
+      properties:
+        goal:
+          type: string
+          description: Natural language goal to convert to action plan
+          example: "Clean the room"
+        userId:
+          type: string
+          description: ID of the user requesting the plan
+          example: "user-123"
+        priority:
+          type: string
+          enum: [low, medium, high]
+          description: Priority level for the action plan
+          example: "medium"
+
+    RobotAction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the robot action
+          example: "action-101"
+        type:
+          type: string
+          enum: [navigation, perception, manipulation, communication]
+          description: Type of action
+          example: "navigation"
+        parameters:
+          type: object
+          description: Action-specific parameters
+          example: {"destination": "kitchen", "distance": 2.0}
+        sequenceNumber:
+          type: integer
+          description: Order in which the action should be executed
+          example: 1
+        status:
+          type: string
+          enum: [pending, executing, completed, failed]
+          description: Current status of the action
+          example: "pending"

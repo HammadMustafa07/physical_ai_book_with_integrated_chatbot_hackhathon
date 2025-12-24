@@ -1,0 +1,112 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ifm-hero-background-color, #242526);
+  color: var(--ifm-hero-text-color, #ffffff);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+/* Dark mode specific styles for hero section - improved contrast */
+[data-theme='dark'] .heroBanner {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #ffffff;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .hero__title {
+  color: var(--ifm-heading-color, #ffffff);
+}
+
+[data-theme='dark'] .hero__subtitle {
+  color: var(--ifm-color-content, #e0e0e0);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionTitle {
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary);
+}
+
+.aboutSection {
+  background-color: var(--ifm-background-surface-color, #f8f9fa);
+  margin: 2rem 0;
+  padding: 3rem 2rem; /* Consistent padding as per implementation plan */
+  color: var(--ifm-color-content, #242526);
+}
+
+.structureSection {
+  background-color: var(--ifm-background-color, white);
+  margin: 2rem 0;
+  padding: 3rem 2rem; /* Consistent padding as per implementation plan */
+  color: var(--ifm-color-content, #242526);
+}
+
+/* Responsive padding for mobile */
+@media screen and (max-width: 996px) {
+  .aboutSection,
+  .structureSection {
+    padding: 2rem 1rem; /* Adjusted padding for mobile */
+  }
+}
+
+/* Dark mode specific styles for sections */
+[data-theme='dark'] .aboutSection {
+  background-color: var(--ifm-background-surface-color, #1a1a1a);
+  color: var(--ifm-color-content, #e0e0e0);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .structureSection {
+  background-color: var(--ifm-background-color, #121212);
+  color: var(--ifm-color-content, #e0e0e0);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .sectionTitle {
+  color: var(--ifm-color-primary, #5e9fff);
+}
+
+[data-theme='dark'] .aboutSection p,
+[data-theme='dark'] .aboutSection ul,
+[data-theme='dark'] .structureSection p,
+[data-theme='dark'] .structureSection ul,
+[data-theme='dark'] .structureSection h3 {
+  color: var(--ifm-color-content, #e0e0e0);
+}
+
+[data-theme='dark'] .aboutSection li,
+[data-theme='dark'] .structureSection li {
+  color: var(--ifm-color-content-secondary, #dcdcdc);
+}
+
+[data-theme='dark'] .structureSection h3 {
+  color: var(--ifm-heading-color, #ffffff);
+}
+
+@media screen and (max-width: 996px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .aboutSection,
+  .structureSection {
+    padding: 1rem 0;
+  }
+}

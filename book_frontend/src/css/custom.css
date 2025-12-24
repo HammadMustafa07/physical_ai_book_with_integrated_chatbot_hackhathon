@@ -1,0 +1,283 @@
+/* *
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #001f3f; /* Navy blue */
+  --ifm-color-primary-dark: #001933; /* Darker navy */
+  --ifm-color-primary-darker: #001426; /* Even darker navy */
+  --ifm-color-primary-darkest: #000f1a; /* Darkest navy */
+  --ifm-color-primary-light: #002a52; /* Lighter navy */
+  --ifm-color-primary-lighter: #003566; /* Even lighter navy */
+  --ifm-color-primary-lightest: #00407a; /* Lightest navy */
+  --ifm-color-secondary: #FFDC00; /* Gold (complementary) */
+  --ifm-color-secondary-dark: #e6c700; /* Darker gold */
+  --ifm-color-secondary-darker: #ccaf00; /* Even darker gold */
+  --ifm-color-secondary-darkest: #b39800; /* Darkest gold */
+  --ifm-color-secondary-light: #ffe11a; /* Lighter gold */
+  --ifm-color-secondary-lighter: #ffe633; /* Even lighter gold */
+  --ifm-color-secondary-lightest: #ffeb4d; /* Lightest gold */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Add smooth transitions for theme switching and hover effects */
+  --ifm-transition-speed: 0.3s;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #63b3ff; /* Improved contrast navy blue for dark mode - WCAG AA compliant */
+  --ifm-color-primary-dark: #4d96ff; /* Better contrast darker navy */
+  --ifm-color-primary-darker: #3a7bd6; /* Better contrast even darker navy */
+  --ifm-color-primary-darkest: #2860b0; /* Better contrast darkest navy */
+  --ifm-color-primary-light: #7bc4ff; /* Better contrast lighter navy */
+  --ifm-color-primary-lighter: #9cd6ff; /* Better contrast even lighter navy */
+  --ifm-color-primary-lightest: #bfe8ff; /* Better contrast lightest navy */
+  --ifm-color-secondary: #FFD700; /* Gold (complementary) - adjusted for better contrast */
+  --ifm-color-secondary-dark: #e6c200; /* Darker gold */
+  --ifm-color-secondary-darker: #ccad00; /* Even darker gold */
+  --ifm-color-secondary-darkest: #b39700; /* Darkest gold */
+  --ifm-color-secondary-light: #ffdd33; /* Lighter gold */
+  --ifm-color-secondary-lighter: #ffe34d; /* Even lighter gold */
+  --ifm-color-secondary-lightest: #ffe966; /* Lightest gold */
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1); /* Lighter background for highlighted code lines */
+
+  /* Enhanced text contrast for dark mode to meet WCAG 2.1 AA standards */
+  --ifm-color-content: #f8f8f8; /* Higher contrast content text - WCAG AA compliant */
+  --ifm-color-content-secondary: #e6e6e6; /* Higher contrast secondary text */
+  --ifm-heading-color: #ffffff; /* Pure white for headings for maximum contrast */
+  --ifm-background-color: #0f0f0f; /* Darker background for better contrast */
+  --ifm-background-surface-color: #1a1a1a; /* Surface background with better contrast */
+  --ifm-color-emphasis-100: rgba(255, 255, 255, 0.08); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-200: rgba(255, 255, 255, 0.16); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-300: rgba(255, 255, 255, 0.24); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-400: rgba(255, 255, 255, 0.32); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-500: rgba(255, 255, 255, 0.40); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-600: rgba(255, 255, 255, 0.48); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-700: rgba(255, 255, 255, 0.56); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-800: rgba(255, 255, 255, 0.64); /* Lighter emphasis for better contrast */
+  --ifm-color-emphasis-900: rgba(255, 255, 255, 0.72); /* Lighter emphasis for better contrast */
+
+  /* Enhanced code block colors for better readability */
+  --ifm-code-background: rgba(255, 255, 255, 0.08);
+  --ifm-pre-background: #1a1a1a; /* Darker background for code blocks */
+}
+
+/* Enhanced dark mode styling for homepage sections */
+[data-theme='dark'] .hero--primary {
+  background: linear-gradient(135deg, var(--ifm-background-color, #0f0f0f) 0%, var(--ifm-background-surface-color, #1a1a1a) 100%); /* Gradient for better visual depth */
+  color: var(--ifm-color-content, #f8f8f8); /* Use consistent content color variable */
+  border-bottom: 1px solid var(--ifm-color-emphasis-300, rgba(255, 255, 255, 0.24));
+}
+
+[data-theme='dark'] .hero__title {
+  color: var(--ifm-heading-color, #ffffff); /* Use heading color variable for consistency */
+}
+
+[data-theme='dark'] .hero__subtitle {
+  color: var(--ifm-color-content-secondary, #e6e6e6); /* Use secondary content color variable */
+}
+
+[data-theme='dark'] .button--secondary {
+  background-color: var(--ifm-color-primary, #63b3ff); /* Use primary color variable for better consistency */
+  color: #ffffff; /* White text for button */
+  border-color: var(--ifm-color-primary-light, #7bc4ff); /* Use primary light color variable */
+}
+
+[data-theme='dark'] .button--secondary:hover {
+  background-color: var(--ifm-color-primary-light, #7bc4ff); /* Use primary light color on hover */
+  transform: translateY(-2px); /* Slight elevation on hover */
+  box-shadow: 0 4px 12px rgba(99, 179, 255, 0.3); /* Subtle shadow matching primary color */
+}
+
+[data-theme='dark'] .button--secondary:focus {
+  box-shadow: 0 0 0 3px rgba(99, 179, 255, 0.5); /* Focus ring matching primary color for accessibility */
+}
+
+/* Enhanced dark mode styling for "What This Book Is About" section */
+[data-theme='dark'] .aboutSection {
+  background-color: var(--ifm-background-surface-color, #1a1a1a); /* Use consistent surface color */
+  border-top: 1px solid var(--ifm-color-emphasis-200, rgba(255, 255, 255, 0.16));
+  border-bottom: 1px solid var(--ifm-color-emphasis-200, rgba(255, 255, 255, 0.16));
+}
+
+/* Enhanced dark mode styling for "Course Structure" section */
+[data-theme='dark'] .structureSection {
+  background-color: var(--ifm-background-color, #0f0f0f); /* Use consistent background color */
+  border-top: 1px solid var(--ifm-color-emphasis-200, rgba(255, 255, 255, 0.16));
+  border-bottom: 1px solid var(--ifm-color-emphasis-200, rgba(255, 255, 255, 0.16));
+}
+
+/* Enhanced section titles in dark mode */
+[data-theme='dark'] .sectionTitle {
+  color: var(--ifm-color-primary, #63b3ff); /* Use primary color for better visibility in dark mode */
+}
+
+/* Enhanced text styling for better readability in dark mode */
+[data-theme='dark'] .aboutSection p,
+[data-theme='dark'] .aboutSection ul,
+[data-theme='dark'] .structureSection p,
+[data-theme='dark'] .structureSection ul,
+[data-theme='dark'] .structureSection h3 {
+  color: var(--ifm-color-content, #f8f8f8); /* Use consistent content color */
+}
+
+/* Enhanced list styling in dark mode */
+[data-theme='dark'] .aboutSection li,
+[data-theme='dark'] .structureSection li {
+  color: var(--ifm-color-content-secondary, #e6e6e6); /* Use secondary content color */
+}
+
+/* Enhanced heading styling in dark mode */
+[data-theme='dark'] .structureSection h3 {
+  color: var(--ifm-heading-color, #ffffff); /* Use heading color for better contrast */
+}
+
+/* Add smooth transitions for theme switching */
+html {
+  transition: color var(--ifm-transition-speed) ease,
+              background-color var(--ifm-transition-speed) ease,
+              border-color var(--ifm-transition-speed) ease,
+              box-shadow var(--ifm-transition-speed) ease;
+}
+
+/* Add hover effects for links */
+a {
+  transition: color var(--ifm-transition-speed) ease,
+              opacity var(--ifm-transition-speed) ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Add hover effects for navigation items */
+.menu__list-item a:hover,
+.navbar__item:hover,
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  transition: all var(--ifm-transition-speed) ease;
+  /* Enhanced hover effect for better visual feedback */
+  opacity: 0.85;
+  transform: translateY(-1px);
+  color: var(--ifm-color-primary-light);
+}
+
+/* Add hover effects for sidebar items */
+.sidebar-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: background-color var(--ifm-transition-speed) ease,
+              transform var(--ifm-transition-speed) ease;
+}
+
+[data-theme='dark'] .sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Add hover effects for homepage features */
+.featureSvg {
+  transition: transform var(--ifm-transition-speed) ease,
+              opacity var(--ifm-transition-speed) ease;
+}
+
+.featureSvg:hover {
+  transform: scale(1.05);
+}
+
+/* Enhanced link styling for better contrast in dark mode */
+[data-theme='dark'] a {
+  color: var(--ifm-color-primary-light, #7bc4ff);
+  transition: color var(--ifm-transition-speed) ease,
+              opacity var(--ifm-transition-speed) ease;
+}
+
+[data-theme='dark'] a:hover {
+  color: var(--ifm-color-primary-lighter, #9cd6ff);
+  opacity: 1;
+}
+
+/* Add focus states for accessibility - remove black borders while maintaining accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  /* Remove default browser focus ring that may appear as black border */
+  -webkit-focus-ring-color: transparent;
+}
+
+/* Enhanced navbar item focus - remove black borders while maintaining accessibility */
+.navbar__item:focus,
+.navbar__link:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+  /* Remove default browser focus ring that may appear as black border */
+  -webkit-focus-ring-color: transparent;
+}
+
+/* Improve button hover states */
+.button {
+  transition: all var(--ifm-transition-speed) ease,
+              background-color var(--ifm-transition-speed) ease,
+              border-color var(--ifm-transition-speed) ease,
+              box-shadow var(--ifm-transition-speed) ease,
+              transform var(--ifm-transition-speed) ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced footer styling for professional appearance */
+.footer {
+  padding: 3rem 0 2rem;
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+  margin-top: auto;
+}
+
+.footer__title {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.footer__link-item {
+  color: var(--ifm-color-content-secondary);
+  transition: color var(--ifm-transition-speed) ease;
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.footer__links {
+  margin-bottom: 2rem;
+}
+
+.footer__copyright {
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+/* Dark mode footer enhancements */
+[data-theme='dark'] .footer {
+  background-color: var(--ifm-background-surface-color);
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .footer__copyright {
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}

@@ -1,0 +1,404 @@
+# API Contracts: ROS 2 Nervous System Module
+
+# Phase 1: Content & Data Modeling
+
+openapi: 3.0.0
+info:
+  title: Educational Content API
+  description: API for retrieving educational content for RAG system and documentation
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: https://staging-api.example.com/v1
+    description: Staging server
+
+paths:
+  /content/modules/{moduleId}:
+    get:
+      summary: Get all content for a specific module
+      description: Retrieve all chapters and sections for a specific educational module with metadata for RAG systems
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          description: ID of the module
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Module content retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModuleContent'
+        '404':
+          description: Module not found
+
+  /content/modules/{moduleId}/chapters/{chapterId}:
+    get:
+      summary: Get content for a specific chapter
+      description: Retrieve content for a specific chapter within a module with RAG-optimized metadata
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          description: ID of the module
+          schema:
+            type: string
+        - name: chapterId
+          in: path
+          required: true
+          description: ID of the chapter
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chapter content retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContent'
+        '404':
+          description: Module or chapter not found
+
+  /content/search:
+    get:
+      summary: Search educational content
+      description: Search across all educational content with keyword matching, optimized for RAG system queries
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Search query string
+          schema:
+            type: string
+        - name: moduleId
+          in: query
+          required: false
+          description: Optional module ID to limit search scope
+          schema:
+            type: string
+        - name: tags
+          in: query
+          required: false
+          description: Filter by specific concept tags
+          schema:
+            type: string
+        - name: difficulty
+          in: query
+          required: false
+          description: Filter by difficulty level (beginner, intermediate, advanced)
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of results to return
+          schema:
+            type: integer
+            default: 10
+        - name: offset
+          in: query
+          required: false
+          description: Number of results to skip (for pagination)
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Search results retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResults'
+
+  /content/concepts/{conceptName}:
+    get:
+      summary: Get information about a specific concept
+      description: Retrieve detailed information about a specific ROS 2 concept including related concepts and examples
+      parameters:
+        - name: conceptName
+          in: path
+          required: true
+          description: Name of the concept to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Concept information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ROS2Concept'
+        '404':
+          description: Concept not found
+
+components:
+  schemas:
+    ModuleContent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the module
+        title:
+          type: string
+          description: Title of the module
+        description:
+          type: string
+          description: Brief description of the module
+        targetAudience:
+          type: string
+          description: Description of the intended audience
+        estimatedDuration:
+          type: integer
+          description: Estimated time to complete the module in minutes
+        chapters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChapterSummary'
+        metadata:
+          $ref: '#/components/schemas/RAGMetadata'
+        createdAt:
+          type: string
+          format: date-time
+          description: When the module was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the module was last updated
+
+    ChapterContent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        moduleId:
+          type: string
+          description: ID of the parent module
+        title:
+          type: string
+          description: Title of the chapter
+        content:
+          type: string
+          description: Markdown content of the chapter
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: List of learning objectives for the chapter
+        estimatedDuration:
+          type: integer
+          description: Estimated reading time in minutes
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+        metadata:
+          $ref: '#/components/schemas/RAGMetadata'
+        createdAt:
+          type: string
+          format: date-time
+          description: When the chapter was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the chapter was last updated
+
+    ChapterSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        title:
+          type: string
+          description: Title of the chapter
+        description:
+          type: string
+          description: Brief description of the chapter
+        estimatedDuration:
+          type: integer
+          description: Estimated reading time in minutes
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Overall difficulty level of the chapter
+
+    Section:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the section
+        title:
+          type: string
+          description: Title of the section
+        content:
+          type: string
+          description: Content of the section in Markdown format
+        type:
+          type: string
+          enum: [explanation, example, exercise, summary, concept]
+          description: Type of content in the section
+        keywords:
+          type: array
+          items:
+            type: string
+          description: List of important keywords in this section
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Difficulty level of this section
+        conceptTags:
+          type: array
+          items:
+            type: string
+          description: Core concepts covered in this section
+
+    SearchResults:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query that was used
+        totalResults:
+          type: integer
+          description: Total number of results found
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+        metadata:
+          $ref: '#/components/schemas/PaginationMetadata'
+
+    SearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the result
+        title:
+          type: string
+          description: Title of the content
+        moduleId:
+          type: string
+          description: ID of the module containing the content
+        chapterId:
+          type: string
+          description: ID of the chapter containing the content
+        sectionId:
+          type: string
+          description: ID of the section containing the content (if applicable)
+        content:
+          type: string
+          description: Snippet of the content that matches the search
+        score:
+          type: number
+          format: float
+          description: Relevance score of the result
+        url:
+          type: string
+          description: URL to access the full content
+        conceptTags:
+          type: array
+          items:
+            type: string
+          description: Core concepts associated with this result
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Difficulty level of the content
+
+    ROS2Concept:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the ROS 2 concept
+        definition:
+          type: string
+          description: Clear definition of the concept
+        importance:
+          type: string
+          enum: [fundamental, important, supplementary]
+          description: How important this concept is
+        relatedConcepts:
+          type: array
+          items:
+            type: string
+          description: List of related ROS 2 concepts
+        examples:
+          type: array
+          items:
+            type: string
+          description: List of examples demonstrating this concept
+        chapterId:
+          type: string
+          description: Reference to the chapter where this concept is primarily covered
+        usageContext:
+          type: string
+          description: Context in which this concept is typically used
+        commonMistakes:
+          type: array
+          items:
+            type: string
+          description: Common mistakes or misconceptions about this concept
+
+    RAGMetadata:
+      type: object
+      properties:
+        conceptTags:
+          type: array
+          items:
+            type: string
+          description: List of core concepts covered
+        prerequisiteConcepts:
+          type: array
+          items:
+            type: string
+          description: List of concepts needed to understand this content
+        relatedConcepts:
+          type: array
+          items:
+            type: string
+          description: List of related concepts for cross-referencing
+        audienceLevel:
+          type: string
+          description: Target audience expertise level
+        contentDepth:
+          type: string
+          enum: [overview, detailed, comprehensive]
+          description: How deeply the topic is covered
+        exampleCount:
+          type: number
+          description: Number of examples provided
+        codeSnippetCount:
+          type: number
+          description: Number of code snippets provided
+        semanticChunks:
+          type: array
+          items:
+            type: string
+          description: Pre-identified semantic chunks for RAG systems
+
+    PaginationMetadata:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: Number of results per page
+        offset:
+          type: integer
+          description: Number of results skipped
+        total:
+          type: integer
+          description: Total number of results available
+        hasNext:
+          type: boolean
+          description: Whether there are more results available
+        hasPrevious:
+          type: boolean
+          description: Whether there are previous results available

@@ -1,0 +1,181 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #001f3f; /* Navy blue */
+  --ifm-color-primary-dark: #001933; /* Darker navy */
+  --ifm-color-primary-darker: #001426; /* Even darker navy */
+  --ifm-color-primary-darkest: #000f1a; /* Darkest navy */
+  --ifm-color-primary-light: #002a52; /* Lighter navy */
+  --ifm-color-primary-lighter: #003566; /* Even lighter navy */
+  --ifm-color-primary-lightest: #00407a; /* Lightest navy */
+  --ifm-color-secondary: #FFDC00; /* Gold (complementary) */
+  --ifm-color-secondary-dark: #e6c700; /* Darker gold */
+  --ifm-color-secondary-darker: #ccaf00; /* Even darker gold */
+  --ifm-color-secondary-darkest: #b39800; /* Darkest gold */
+  --ifm-color-secondary-light: #ffe11a; /* Lighter gold */
+  --ifm-color-secondary-lighter: #ffe633; /* Even lighter gold */
+  --ifm-color-secondary-lightest: #ffeb4d; /* Lightest gold */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Add smooth transitions for theme switching and hover effects */
+  --ifm-transition-speed: 0.3s;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #5e9fff; /* Improved contrast navy blue for dark mode */
+  --ifm-color-primary-dark: #4a80ff; /* Better contrast darker navy */
+  --ifm-color-primary-darker: #356ce0; /* Better contrast even darker navy */
+  --ifm-color-primary-darkest: #2259b4; /* Better contrast darkest navy */
+  --ifm-color-primary-light: #78b0ff; /* Better contrast lighter navy */
+  --ifm-color-primary-lighter: #97ccff; /* Better contrast even lighter navy */
+  --ifm-color-primary-lightest: #b8daff; /* Better contrast lightest navy */
+  --ifm-color-secondary: #FFDC00; /* Gold (complementary) */
+  --ifm-color-secondary-dark: #e6c700; /* Darker gold */
+  --ifm-color-secondary-darker: #ccaf00; /* Even darker gold */
+  --ifm-color-secondary-darkest: #b39800; /* Darkest gold */
+  --ifm-color-secondary-light: #ffe11a; /* Lighter gold */
+  --ifm-color-secondary-lighter: #ffe633; /* Even lighter gold */
+  --ifm-color-secondary-lightest: #ffeb4d; /* Lightest gold */
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1); /* Lighter background for highlighted code lines */
+
+  /* Enhanced text contrast for dark mode to meet WCAG 2.1 AA standards */
+  --ifm-color-content: #f0f0f0; /* Higher contrast content text */
+  --ifm-color-content-secondary: #dcdcdc; /* Higher contrast secondary text */
+  --ifm-background-color: #121212; /* Darker background for better contrast */
+  --ifm-background-surface-color: #1e1e1e; /* Surface background with better contrast */
+
+  /* Enhanced code block colors for better readability */
+  --ifm-code-background: rgba(255, 255, 255, 0.05);
+  --ifm-pre-background: #1e1e1e; /* Darker background for code blocks */
+}
+
+/* Add smooth transitions for theme switching */
+html {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Add hover effects for links */
+a {
+  transition: color var(--ifm-transition-speed) ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Add hover effects for navigation items */
+.menu__list-item a:hover,
+.navbar__item:hover,
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  transition: all var(--ifm-transition-speed) ease;
+  /* Enhanced hover effect for better visual feedback */
+  opacity: 0.85;
+  transform: translateY(-1px);
+  color: var(--ifm-color-primary-light);
+}
+
+/* Add hover effects for sidebar items */
+.sidebar-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: background-color var(--ifm-transition-speed) ease;
+}
+
+[data-theme='dark'] .sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Add hover effects for homepage features */
+.featureSvg {
+  transition: transform var(--ifm-transition-speed) ease;
+}
+
+.featureSvg:hover {
+  transform: scale(1.05);
+}
+
+/* Add focus states for accessibility - remove black borders while maintaining accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  /* Remove default browser focus ring that may appear as black border */
+  -webkit-focus-ring-color: transparent;
+}
+
+/* Enhanced navbar item focus - remove black borders while maintaining accessibility */
+.navbar__item:focus,
+.navbar__link:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+  /* Remove default browser focus ring that may appear as black border */
+  -webkit-focus-ring-color: transparent;
+}
+
+/* Improve button hover states */
+.button {
+  transition: all var(--ifm-transition-speed) ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced footer styling for professional appearance */
+.footer {
+  padding: 3rem 0 2rem;
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+  margin-top: auto;
+}
+
+.footer__title {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.footer__link-item {
+  color: var(--ifm-color-content-secondary);
+  transition: color var(--ifm-transition-speed) ease;
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.footer__links {
+  margin-bottom: 2rem;
+}
+
+.footer__copyright {
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+/* Dark mode footer enhancements */
+[data-theme='dark'] .footer {
+  background-color: var(--ifm-background-surface-color);
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .footer__copyright {
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
