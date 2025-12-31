@@ -64,7 +64,9 @@
       "Skill(sp.plan)",
       "Bash(powershell -ExecutionPolicy Bypass -File ./.specify/scripts/powershell/setup-plan.ps1 -Json)",
       "Skill(sp.tasks)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(find \"D:\\\\01_Hammad\\\\10_Hammad\\\\01_GIAIC\\\\04_Hackhathons\\\\physical_ai_book_with_integrated_chatbot_hackhathon\\\\book_frontend\\\\docs\\\\modules\" -name \"*.md\" -exec wc -l {} ;)",
+      "Bash(find book_frontend/docs/modules -name \"*.md\" -exec wc -l {} ;)"
     ]
   }
 }

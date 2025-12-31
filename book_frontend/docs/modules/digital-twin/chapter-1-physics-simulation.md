@@ -51,25 +51,9 @@ Gazebo accurately simulates physical properties through:
 ### Loading a Humanoid URDF into Gazebo
 
 To load a humanoid robot model:
-
-1. Ensure your URDF is properly structured with:
-   - Correct joint definitions
-   - Physical properties (mass, inertia)
-   - Visual and collision geometries
-   - Proper kinematic chains
-
+1. Ensure your URDF is properly structured with correct joint definitions and physical properties
 2. Launch Gazebo with your robot:
    ```bash
    ros2 launch your_robot_gazebo your_robot.launch.py
    ```
 
-### Common Simulation Failure Modes
-
-Be aware of these common issues:
-- **Explosions**: Usually caused by unstable physics parameters
-- **Joint Instability**: Often due to incorrect inertia tensors
-- **Penetration**: Results from inadequate collision geometry
-
-## Practical Exercise
-
-Create a simple simulation environment with a humanoid model and observe the physics behavior under different conditions.

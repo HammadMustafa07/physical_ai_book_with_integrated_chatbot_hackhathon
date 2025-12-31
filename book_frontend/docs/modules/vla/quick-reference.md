@@ -27,7 +27,6 @@ title: Quick Reference
 ### Manipulation Parameters
 - `object`: Object to manipulate (name or description)
 - `target`: Target location or surface
-- `grip_force`: Force for grasping (light, medium, firm)
 
 ## ROS 2 Integration
 
@@ -50,7 +49,6 @@ title: Quick Reference
 - `E002`: Plan infeasible
 - `E003`: Navigation obstacle
 - `E004`: Object not found
-- `E005`: Grasp failure
 
 ### Recovery Strategies
 1. **Retry**: Attempt the same action again
@@ -58,75 +56,4 @@ title: Quick Reference
 3. **Ask for Help**: Request human assistance
 4. **Abort**: Safely stop and report failure
 
-## Performance Tips
 
-### Optimizing Speech Recognition
-- Use clear, consistent command vocabulary
-- Speak at moderate pace and volume
-- Minimize background noise
-- Use confirmation prompts for critical commands
-
-### Efficient Planning
-- Break complex goals into simpler subtasks
-- Use context to disambiguate commands
-- Implement plan caching for common tasks
-- Validate plans before execution
-
-### Robust Execution
-- Monitor execution progress continuously
-- Implement timeout mechanisms
-- Use feedback to adjust actions
-- Plan for graceful degradation
-
-## Debugging Commands
-
-### System Status
-- Check all nodes: `ros2 node list`
-- Monitor topics: `ros2 topic list`
-- View messages: `ros2 topic echo [topic_name]`
-
-### VLA-Specific Debugging
-- Voice input: `ros2 topic echo /voice_command`
-- System status: `ros2 topic echo /vla_status`
-- Navigation: `ros2 topic echo /cmd_vel`
-- Perception: `ros2 topic echo /detected_objects`
-
-## Best Practices
-
-### Design Principles
-1. **Safety First**: Always prioritize safe robot behavior
-2. **User-Centric**: Design commands that match user expectations
-3. **Robustness**: Handle errors gracefully
-4. **Scalability**: Design for future feature additions
-
-### Testing Strategies
-- Test with diverse user commands
-- Validate edge cases and error conditions
-- Verify system behavior in various environments
-- Conduct user experience testing
-
-## Troubleshooting Quick Fixes
-
-### Voice Not Recognized
-- Check microphone connection
-- Verify audio input levels
-- Try speaking more clearly
-- Use alternative phrasing
-
-### Robot Not Moving
-- Check battery level
-- Verify navigation permissions
-- Ensure clear path
-- Confirm ROS 2 connections
-
-### Object Not Found
-- Improve lighting conditions
-- Move closer to object
-- Check camera calibration
-- Verify object is in field of view
-
-### Plan Failing
-- Simplify the goal
-- Check robot capabilities
-- Verify environmental constraints
-- Break into smaller tasks
